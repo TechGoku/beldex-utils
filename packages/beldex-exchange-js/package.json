@@ -1,0 +1,32 @@
+{
+  "name": "@beldex/beldex-exchange",
+  "version": "1.0.1",
+  "description": "This module is used by the desktop and web versions of the Beldex wallet to facilitate the exchange of BDX into other cryptocurrencies. It can be used to facilitate transactions where a user converts one cryptocurrency into another.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cryptocurrency-conversion",
+    "cryptocurrency-exchange",
+    "beldex",
+    "bdxtobtc",
+    "beldextobitcoin",
+    "beldex-to-bitcoin"
+  ],
+  "author": "Beldex",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Beldex-Coin/beldex-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Beldex-Coin/beldex-utils/issues"
+  },
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

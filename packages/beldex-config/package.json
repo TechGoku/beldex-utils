@@ -1,0 +1,26 @@
+{
+  "name": "@beldex/beldex-config",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha 'test/**/*.js'"
+  },
+  "author": "Beldex <team@beldex.io>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Beldex-Coin/beldex-utils.git"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@beldex/beldex-bigint": "^1.0.1"
+  },
+  "keywords": [
+    "beldex",
+    "SDK",
+    "bdx"
+  ]
+}

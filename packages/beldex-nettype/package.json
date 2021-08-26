@@ -1,0 +1,23 @@
+{
+  "name": "@beldex/beldex-nettype",
+  "version": "1.0.1",
+  "description": "Definitions of the beldex network types.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Beldex <team@beldex.io>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Beldex-Coin/beldex-utils.git"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "beldex",
+    "SDK",
+    "bdx"
+  ]
+}

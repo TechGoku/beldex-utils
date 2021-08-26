@@ -1,0 +1,26 @@
+{
+  "name": "@beldex/beldex-yat-lookup",
+  "version": "1.0.1",
+  "description": "A utility module to resolve beldex addresses and subaddresses, and retrieve permitted emoji characters from Yat's EmojiID service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Beldex <team@beldex.io>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Beldex-Coin/beldex-utils.git"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "beldex",
+    "SDK",
+    "bdx"
+  ],
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}

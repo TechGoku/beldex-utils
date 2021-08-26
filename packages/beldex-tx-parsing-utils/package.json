@@ -1,0 +1,31 @@
+{
+  "name": "@beldex/beldex-tx-parsing-utils",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bekdex <team@beldex.io>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Beldex-Coin/beldex-utils.git"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@beldex/beldex-bigint": "^1.0.1",
+    "@beldex/beldex-config": "^1.0.1",
+    "@beldex/beldex-keyimage-cache": "^1.0.1",
+    "@beldex/beldex-money-format": "^1.0.1",
+    "moment": "^2.29.1"
+  },
+  "homepage": "https://github.com/Beldex-Coin/beldex-utils/tree/master/packages/beldex-tx-parsing-utils",
+  "keywords": [
+    "beldex",
+    "SDK",
+    "bdx"
+  ]
+}

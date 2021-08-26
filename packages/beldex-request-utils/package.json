@@ -1,0 +1,24 @@
+{
+  "name": "@beldex/beldex-request-utils",
+  "version": "1.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Beldex <team@beldex.io>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Beldex-Coin/beldex-utils.git"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/Beldex-Coin/beldex-utils/tree/master/packages/beldex-request-utils",
+  "keywords": [
+    "beldex",
+    "SDK",
+    "bdx"
+  ]
+}
