@@ -1,7 +1,7 @@
 {
-  "name": "@bdxi/beldex-sendfunds-utils",
+  "name": "@bdxi/beldex-paymentid-utils",
   "version": "1.0.0",
-  "description": "Utils for managing the send fund process for beldex",
+  "description": "Used to validate Beldex payment ids",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/Beldex-Coin/beldex-utils.git#master"
   },
-  "license": "BSD-3-Clause",
+  "license": "ISC",
   "publishConfig": {
     "access": "public"
   },
@@ -21,11 +21,5 @@
   "homepage": "https://github.com/Beldex-Coin/beldex-utils/tree/master#readme",
   "directories": {
     "test": "test"
-  },
-  "keywords": [
-    "beldex",
-    "bdxi",
-    "bdx",
-    "crypto"
-  ]
+  }
 }
