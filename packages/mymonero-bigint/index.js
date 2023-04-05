@@ -1,7 +1,9 @@
 /*
 	JavaScript BigInteger library version 0.9.1
 	http://silentmatt.com/biginteger/
-  
+
+	Copyright (c) 2009 Matthew Crumley <email@matthewcrumley.com>
+	Copyright (c) 2010,2011 by John Tobey <John.Tobey@gmail.com>
 	Licensed under the MIT license.
 
 	Support for arbitrary internal representation base was added by

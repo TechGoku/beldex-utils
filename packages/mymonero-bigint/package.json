@@ -1,23 +1,18 @@
 {
-  "name": "@beldex/beldex-bigint",
-  "version": "1.0.1",
+  "name": "@bdxi/beldex-bigint",
+  "version": "1.0.0",
   "description": "A fork of the BigInt package to add lowVal and expose CONSTRUCT",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Beldex <team@beldex.io>",
+  "author": "Alexsanchez <alexsanchez@beldex.io>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Beldex-Coin/beldex-utils.git"
+    "url": ""
   },
   "license": "MIT",
   "publishConfig": {
     "access": "public"
-  },
-  "keywords": [
-    "beldex",
-    "SDK",
-    "bdx"
-  ]
+  }
 }
