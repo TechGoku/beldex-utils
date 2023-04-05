@@ -9,17 +9,17 @@
 ## Installation
 
 ```bash
-npm i @bdxi/beldex-bigint
+npm i @bdxi/beldex-locales
 ```
 
 ## Usage
 
 ```js
-const JSBigInt = require('@bdxi/beldex-bigint').BigInteger;
-const amount = new JSBigInt('12300000');
-const beldex_amount_format_utils = require('@bdxi/beldex-money-format')
-
-const amount_str = beldex_amount_format_utils.formatMoney(amount);
+const {
+  compatibleCodeFromLocale,
+  mnemonicLanguages,
+  supportedShortCodes,
+} = require("@bdxi/beldex-locales");
 ```
 
 -----
