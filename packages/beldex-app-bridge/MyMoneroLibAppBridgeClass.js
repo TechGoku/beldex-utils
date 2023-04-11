@@ -1,6 +1,6 @@
 const MyMoneroCoreBridgeEssentialsClass = require('./MyMoneroCoreBridgeEssentialsClass')
 const MyMoneroBridge_utils = require('./MyMoneroBridge_utils')
-const nettype_utils = require("@mymonero/mymonero-nettype");
+const nettype_utils = require("@bdxi/beldex-nettype");
 //
 class MyMoneroLibAppBridgeClass extends MyMoneroCoreBridgeEssentialsClass
 {

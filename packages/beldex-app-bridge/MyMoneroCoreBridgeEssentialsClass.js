@@ -3,9 +3,9 @@
 // Modified to add RingCT support by luigi1111 (2017)
 //
 // v--- These should maybe be injected into a context and supplied to currencyConfig for future platforms
-const JSBigInt = require("@mymonero/mymonero-bigint").BigInteger;
-const nettype_utils = require("@mymonero/mymonero-nettype");
-const MyMoneroBridge_utils = require('@mymonero/mymonero-bridge-utils')
+const JSBigInt = require("@bdxi/beldex-bigint").BigInteger;
+const nettype_utils = require("@bdxi/beldex-nettype");
+const MyMoneroBridge_utils = require('@bdxi/beldex-bridge-utils')
 //
 class MyMoneroCoreBridgeEssentialsClass
 {

@@ -4,7 +4,7 @@
   "description": "Utils for managing the send fund process for beldex",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --recursive"
   },
   "author": "Alexsanchez <alexsanchez@beldex.io>",
   "repository": {

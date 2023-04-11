@@ -1,6 +1,6 @@
 {
   "name": "@bdxi/beldex-tx-parsing-utils",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,10 +15,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@bdxi/beldex-bigint":"^1.0.0",
-    "@bdxi/beldex-keyimage-cache": "^1.0.0",
+    "@bdxi/beldex-bigint": "^1.0.0",
     "@bdxi/beldex-config": "^1.0.0",
-    "@bdxi/beldex-money-format": "^1.0.0",
+    "@bdxi/beldex-keyimage-cache": "^1.0.0",
+    "@bdxi/beldex-money-format": "^1.2.0",
     "moment": "^2.29.4"
   },
   "bugs": {

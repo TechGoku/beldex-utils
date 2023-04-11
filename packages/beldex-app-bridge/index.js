@@ -1,5 +1,5 @@
 const MyMoneroLibAppBridgeClass = require('./MyMoneroLibAppBridgeClass')
-const MyMoneroBridge_utils = require('@mymonero/mymonero-bridge-utils')
+const BeldexBridge_utils = require('@bdxi/beldex-bridge-utils')
 const path = require('path')
 
 //
@@ -7,9 +7,9 @@ const path = require('path')
 module.exports = function (options) {
   options = options || {}
 
-  MyMoneroBridge_utils.update_options_for_fallback_to_asmjs(options)
+  BeldexBridge_utils.update_options_for_fallback_to_asmjs(options)
 
-  const platform_info = MyMoneroBridge_utils.detect_platform()
+  const platform_info = BeldexBridge_utils.detect_platform()
   const ENVIRONMENT_IS_CAPACITOR = platform_info.ENVIRONMENT_IS_CAPACITOR
   const ENVIRONMENT_IS_WEB = platform_info.ENVIRONMENT_IS_WEB
   const ENVIRONMENT_IS_NODE = platform_info.ENVIRONMENT_IS_NODE
