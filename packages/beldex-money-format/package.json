@@ -1,6 +1,6 @@
 {
   "name": "@bdxi/beldex-money-format",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "formatter for crypto values ",
   "main": "index.js",
   "scripts": {
