@@ -10,9 +10,9 @@ const ExchangeUtils = require("../Utils/ExchangeUtilityFunctions")
 //const View = require('../../Views/View.web')
 // const commonComponents_navigationBarButtons = require('../../MMAppUICommonComponents/navigationBarButtons.web')
 // const commonComponents_activityIndicators = require('../../MMAppUICommonComponents/activityIndicators.web')
-const JSBigInt = require('@mymonero/mymonero-bigint').BigInteger // important: grab defined export
-const monero_amount_format_utils = require('@mymonero/mymonero-money-format')
-const ExchangeHelper = require("@mymonero/mymonero-exchange-helper")
+const JSBigInt = require('@bdxi/beldex-bigint').BigInteger // important: grab defined export
+const beldex_amount_format_utils = require('@bdxi/beldex-money-format')
+const ExchangeHelper = require("@bdxi/beldex-exchange-helper")
 let exchangeHelper = new ExchangeHelper();
 
 // NB: because of legacy reasons, we don't want this to render inside a shadow dom. We override createRenderRoot to address this
@@ -93,7 +93,7 @@ export class ChangenowFixedRateView extends ExchangeNavigationController(LitElem
                 this.context.walletsListController.orderSent = false
             }
 
-            ExchangeUtils.default.sendFunds(this.context.walletsListController.records[selectorOffset], in_amount, send_address, sweep_wallet, exchangeHelper.sendFundsValidationStatusCallback, exchangeHelper.handleSendFundsResponseCallback, this.context)
+            ExchangeUtils.default.sendFunds(this.context.walletsListController.records[0], in_amount, send_address, sweep_wallet, exchangeHelper.sendFundsValidationStatusCallback, exchangeHelper.handleSendFundsResponseCallback, this.context)
         } catch (error) {
             console.log(error)
         } 

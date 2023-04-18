@@ -771,17 +771,11 @@ export class ChangenowBuyWithFiatView extends ExchangeNavigationController(LitEl
         const root = super.createRenderRoot();
         
         root.addEventListener('click', (event) => { 
-            if (event.target.localName == "input") {
-                event.target.focus();
-            } else {
-                let inputs = this.querySelectorAll("input");
-                inputs.forEach((input) => {
-                    input.blur();
-                })
-            }
-            
-            if (event.target.id == "confirmation-button") {
-                this.redirectToURL();
+            console.log('click from WS'); 
+            this.shadowName = event.target.localName 
+            //event.target.click();
+            if (event.target.localName === 'searchable-select') {
+                
             }
         });
         

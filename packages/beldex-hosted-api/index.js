@@ -2,13 +2,19 @@
 
 const JSBigInt = require('@bdxi/beldex-bigint').BigInteger // important: grab defined export
 const net_service_utils = require('@bdxi/beldex-net-service-utils')
+const monero_sendingFunds_utils = require("@bdxi/beldex-sendfunds-utils")
 
 class HostedMoneroAPIClient {
+  //
+  // Lifecycle - Initialization
   constructor (options, context) {
     const self = this
     self.options = options
     self.context = context
-
+    self.request = options.request_conformant_module
+    if (!self.request) {
+      throw Error(`${self.constructor.name} requires an options.request_conformant_module such as require('request' / 'xhr')`)
+    }
     self.setup()
   }
 
@@ -31,44 +37,18 @@ class HostedMoneroAPIClient {
     return self.options.apiUrl
   }
 
-  check (url, fn) {
+  //
+  // Runtime - Accessors - Public - Requests
+  LogIn (address, view_key__private, generated_locally, fn) { // fn: (err?, new_address?) -> RequestHandle
     const self = this
-
-    const parameters = {
-      address: '',
-      view_key: '',
-      create_account: false,
-      generated_locally: ''
-    }
-
+    const endpointPath = 'login'
+    const parameters = net_service_utils.New_ParametersForWalletRequest(address, view_key__private)
+    parameters.create_account = true
+    parameters.generated_locally = generated_locally
     const requestHandle = net_service_utils.HTTPRequest(
       self.request,
-      url,
-      '/login',
-      parameters,
-      function (err, data) {
-        if (err) {
-          fn(err)
-        }
-      }
-    )
-
-    return requestHandle
-  }
-
-  LogIn (address, privateViewKey, generatedLocally, fn) {
-    const self = this
-
-    const parameters = {
-      address: address,
-      view_key: privateViewKey,
-      create_account: true,
-      generated_locally: generatedLocally
-    }
-
-    const requestHandle = net_service_utils.HTTPRequest(
       self._new_apiAddress_authority(),
-      '/login',
+      endpointPath,
       parameters,
       function (err, data) {
         if (err) {
@@ -82,20 +62,24 @@ class HostedMoneroAPIClient {
       const new_address = data.new_address
       const received__generated_locally = data.generated_locally
       const start_height = data.start_height
+      // console.log("data from login: ", data)
+      // TODO? parse anything else?
+      //
       fn(null, new_address, received__generated_locally, start_height)
     }
     return requestHandle
   }
 
-  AddressInfo_returningRequestHandle (address, privateViewKey, publicSpendKey, privateSpendKey, fn) {
+  //
+  // Syncing
+  AddressInfo_returningRequestHandle (address, view_key__private, spend_key__public, spend_key__private, fn) { // -> RequestHandle
     const self = this
-    const parameters = {
-      address: address,
-      view_key: privateViewKey
-    }
+    const endpointPath = 'get_address_info'
+    const parameters = net_service_utils.New_ParametersForWalletRequest(address, view_key__private)
     const requestHandle = net_service_utils.HTTPRequest(
+      self.request,
       self._new_apiAddress_authority(),
-      '/get_address_info',
+      endpointPath,
       parameters,
       function (err, data) {
         if (err) {
@@ -107,11 +91,12 @@ class HostedMoneroAPIClient {
     )
     function __proceedTo_parseAndCallBack (data) {
       self.context.backgroundAPIResponseParser.Parsed_AddressInfo(
+        // key-image-managed - just be sure to dekete your wallet's key img cache when you tear down
         data,
         address,
-        privateViewKey,
-        publicSpendKey,
-        privateSpendKey,
+        view_key__private,
+        spend_key__public,
+        spend_key__private,
         function (err, returnValuesByKey) {
           if (err) {
             fn(err)
@@ -162,15 +147,14 @@ class HostedMoneroAPIClient {
     return requestHandle
   }
 
-  AddressTransactions_returningRequestHandle (address, privateViewKey, publicSpendKey, privateSpendKey, fn) {
+  AddressTransactions_returningRequestHandle (address, view_key__private, spend_key__public, spend_key__private, fn) { // -> RequestHandle
     const self = this
-    const parameters = {
-      address: address,
-      view_key: privateViewKey
-    }
+    const endpointPath = 'get_address_txs'
+    const parameters = net_service_utils.New_ParametersForWalletRequest(address, view_key__private)
     const requestHandle = net_service_utils.HTTPRequest(
+      self.request,
       self._new_apiAddress_authority(),
-      '/get_address_txs',
+      endpointPath,
       parameters,
       function (err, data) {
         if (err) {
@@ -184,9 +168,9 @@ class HostedMoneroAPIClient {
       self.context.backgroundAPIResponseParser.Parsed_AddressTransactions(
         data,
         address,
-        privateViewKey,
-        publicSpendKey,
-        privateSpendKey,
+        view_key__private,
+        spend_key__public,
+        spend_key__private,
         function (err, returnValuesByKey) {
           if (err) {
             fn(err)
@@ -219,17 +203,21 @@ class HostedMoneroAPIClient {
     return requestHandle
   }
 
-  ImportRequestInfoAndStatus (address, privateViewKey, fn) {
+  //
+  // Getting wallet txs import info
+  ImportRequestInfoAndStatus (address, view_key__private, fn) { // -> RequestHandle
     const self = this
-    const parameters = {
-      address: address,
-      view_key: privateViewKey,
-      app_name: self.appUserAgent_product,
-      app_version: self.appUserAgent_version
-    }
+    const endpointPath = 'import_wallet_request'
+    const parameters = net_service_utils.New_ParametersForWalletRequest(address, view_key__private)
+    net_service_utils.AddUserAgentParamters(
+      parameters,
+      self.appUserAgent_product,
+      self.appUserAgent_version
+    )
     const requestHandle = net_service_utils.HTTPRequest(
+      self.request,
       self._new_apiAddress_authority(),
-      '/import_wallet_request',
+      endpointPath,
       parameters,
       function (err, data) {
         if (err) {
@@ -255,14 +243,20 @@ class HostedMoneroAPIClient {
     return requestHandle
   }
 
-  UnspentOuts (reqParams, fn) {
+  //
+  // Getting outputs for sending funds
+  UnspentOuts (req_params, fn) { // -> RequestHandle
     const self = this
-    reqParams['app_name'] = self.appUserAgent_product
-    reqParams['app_version'] = self.appUserAgent_version
+    net_service_utils.AddUserAgentParamters(
+      req_params,
+      self.appUserAgent_product,
+      self.appUserAgent_version
+    )
     const requestHandle = net_service_utils.HTTPRequest(
+      self.request,
       self._new_apiAddress_authority(),
-      '/get_unspent_outs',
-      reqParams,
+      'get_unspent_outs',
+      req_params,
       function (err, data) {
         fn(err ? err.toString() : null, data)
       }
@@ -270,14 +264,18 @@ class HostedMoneroAPIClient {
     return requestHandle
   }
 
-  RandomOuts (reqParams, fn) {
+  RandomOuts (req_params, fn) { // -> RequestHandle
     const self = this
-    reqParams['app_name'] = self.appUserAgent_product
-    reqParams['app_version'] = self.appUserAgent_version
+    net_service_utils.AddUserAgentParamters(
+      req_params,
+      self.appUserAgent_product,
+      self.appUserAgent_version
+    )
     const requestHandle = net_service_utils.HTTPRequest(
+      self.request,
       self._new_apiAddress_authority(),
-      '/get_random_outs',
-      reqParams,
+      'get_random_outs',
+      req_params,
       function (err, data) {
         fn(err ? err.toString() : null, data)
       }
@@ -285,15 +283,31 @@ class HostedMoneroAPIClient {
     return requestHandle
   }
 
-  SubmitRawTx (reqParams, fn) {
+  //
+  // Runtime - Imperatives - Public - Sending funds
+  SubmitRawTx (req_params, fn) {
     const self = this
-    reqParams['app_name'] = self.appUserAgent_product
-    reqParams['app_version'] = self.appUserAgent_version
+    // just a debug feature:
+    if (self.context.HostedMoneroAPIClient_DEBUGONLY_mockSendTransactionSuccess === true) {
+      if (self.context.isDebug === true) {
+        console.warn('⚠️  WARNING: Mocking that SubmitSerializedSignedTransaction returned a success response w/o having hit the server.')
+        fn(null, {})
+        return
+      } else {
+        throw Error(`[${self.constructor.name}/SubmitSerializedSignedTransaction]: context.HostedMoneroAPIClient_DEBUGONLY_mockSendTransactionSuccess was true despite isDebug not being true. Set back to false for production build.`)
+      }
+    }
 
+    net_service_utils.AddUserAgentParamters(
+      req_params,
+      self.appUserAgent_product,
+      self.appUserAgent_version,
+    )
     const requestHandle = net_service_utils.HTTPRequest(
+      self.request,
       self._new_apiAddress_authority(),
-      '/submit_raw_tx',
-      reqParams,
+      'submit_raw_tx',
+      req_params,
       function (err, data) {
         fn(err ? err.toString() : null, data)
       }
