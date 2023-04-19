@@ -8,7 +8,7 @@ const beldex_amount_format_utils = require('@bdxi/beldex-money-format')
 const JSBigInt = require('@bdxi/beldex-bigint')
 const ErrorHelper = require("./ErrorHelper")
 const InitialiseExchange = require("./initialiseExchange")
-const ExchangeFunctions = require("@mymonero/mymonero-exchange")
+const ExchangeFunctions = require("@bdxi/beldex-exchange")
 const exchangeFunctions = new ExchangeFunctions();
 
 class ExchangeHelper {

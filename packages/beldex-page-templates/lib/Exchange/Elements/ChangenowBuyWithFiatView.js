@@ -33,7 +33,7 @@ var _lit = require("lit");
 
 var _ExchangeNavigationController = _interopRequireDefault(require("../Controllers/ExchangeNavigationController"));
 
-var _changenowExchangeIntegration = require("@mymonero/changenow-exchange-integration");
+var _changenowExchangeIntegration = require("@bdxi/changenow-exchange-integration");
 
 var _templateObject, _templateObject2;
 
