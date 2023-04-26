@@ -1,10 +1,10 @@
 
-var MyMoneroLibAppCpp = (() => {
+var BeldexLibAppCpp = (() => {
   var _scriptDir = typeof document !== 'undefined' && document.currentScript ? document.currentScript.src : undefined;
   if (typeof __filename !== 'undefined') _scriptDir = _scriptDir || __filename;
   return (
-function(MyMoneroLibAppCpp) {
-  MyMoneroLibAppCpp = MyMoneroLibAppCpp || {};
+function(BeldexLibAppCpp) {
+  BeldexLibAppCpp = BeldexLibAppCpp || {};
 
 
 
@@ -21,7 +21,7 @@ function(MyMoneroLibAppCpp) {
 // after the generated code, you will need to define   var Module = {};
 // before the code. Then that object will be used in the code, and you
 // can continue to use Module afterwards as well.
-var Module = typeof MyMoneroLibAppCpp != 'undefined' ? MyMoneroLibAppCpp : {};
+var Module = typeof BeldexLibAppCpp != 'undefined' ? BeldexLibAppCpp : {};
 
 // See https://caniuse.com/mdn-javascript_builtins_object_assign
 
@@ -1008,7 +1008,7 @@ function createExportWrapper(name, fixedasm) {
 }
 
 var wasmBinaryFile;
-  wasmBinaryFile = 'MyMoneroLibAppCpp_WASM.wasm';
+  wasmBinaryFile = 'BeldexLibAppCpp_WASM.wasm';
   if (!isDataURI(wasmBinaryFile)) {
     wasmBinaryFile = locateFile(wasmBinaryFile);
   }
@@ -7155,13 +7155,13 @@ Module['ready'] = new Promise(function (resolve, reject) {
   })
 })
 
-  return MyMoneroLibAppCpp.ready
+  return BeldexLibAppCpp.ready
 }
 );
 })();
 if (typeof exports === 'object' && typeof module === 'object')
-  module.exports = MyMoneroLibAppCpp;
+  module.exports = BeldexLibAppCpp;
 else if (typeof define === 'function' && define['amd'])
-  define([], function() { return MyMoneroLibAppCpp; });
+  define([], function() { return BeldexLibAppCpp; });
 else if (typeof exports === 'object')
-  exports["MyMoneroLibAppCpp"] = MyMoneroLibAppCpp;
+  exports["BeldexLibAppCpp"] = BeldexLibAppCpp;

@@ -58,7 +58,7 @@ module.exports = function (options) {
     Module_template['locateFile'] = locateFile
     //
     // NOTE: This requires src/module-post.js to be included as post-js in CMakeLists.txt under a wasm build
-    require(`./MyMoneroLibAppCpp_WASM`)(Module_template).then(function (thisModule) {
+    require(`./BeldexLibAppCpp_WASM`)(Module_template).then(function (thisModule) {
       const instance = new MyMoneroLibAppBridgeClass(thisModule)
       resolve(instance)
     }).catch(function (e) {
