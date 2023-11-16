@@ -39,7 +39,8 @@ module.exports = function (options) {
       if (typeof __dirname !== undefined && __dirname !== '/') { // looks like node running in browser.. (but not going to assume it's electron-renderer since that should be taken care of by monero_utils.js itself)
         // but just in case it is... here's an attempt to support it
         // have to check != "/" b/c webpack (I think) replaces __dirname
-        pathTo_cryptonoteUtilsDir = 'file://' + __dirname + '/' // prepending "file://" because it's going to try to stream it
+        // pathTo_cryptonoteUtilsDir = 'file://' + __dirname + '/' // prepending "file://" because it's going to try to stream it
+        pathTo_cryptonoteUtilsDir = `/assets/` 
       } else { // actual web browser
         pathTo_cryptonoteUtilsDir = `/assets/` // this works for the MyMonero browser build, and is quite general, at least
       }

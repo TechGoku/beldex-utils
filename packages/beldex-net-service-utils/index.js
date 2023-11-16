@@ -27,7 +27,7 @@ function HTTPRequest (
     throw 'final_parameters must not be nil'
     // return null
   }
-  const completeURL = apiAddress_authority + endpointPath
+  const completeURL = 'https://'+apiAddress_authority + endpointPath
   console.log('📡  ' + completeURL)
   //
   const request_options = _new_requestOptions_base(
