@@ -1,6 +1,3 @@
-<p align="center">
-  <img alt="MyMonero" src="https://user-images.githubusercontent.com/1645428/146000939-b06f8fd3-9ed2-4a5e-bdd6-3981281dde9c.png">
-</p>
 
 <p align="center">
   Repo to manage BeldexClient Web Assembly
@@ -13,37 +10,20 @@ If you would like to generate the WASM files yourself you will require docker
 
 ## Building
 
-1. Clone the repo `git clone https://github.com/mymonero/mymonero-utils.git`
-1. `cd packages/mymonero-monero-client`
+1. Clone the repo `git clone https://github.com/Beldex-Coin/beldex-utils.git`
+1. `cd packages/beldex-client`
 1. `rm -rf build` removes the old build folder if you have run a build previously.
 1. `rm src/BeldexClient_*` removes the old WASM before your new build.
 1. `./prepare.sh` to fetch the monero core code and the mymonero bridging code.
 1. `npm run build` initiates the emscripten docker image to build the project.
 
-By following these instructions, new WASM library is generated and copied to the src folder
-
------
-## Upgrading from 2.1.x to 2.2.x and 3.x.x
-
-No breaking changes have been made to any packages besides @mymonero/mymonero-monero-client.
-
-For users of @mymonero/mymonero-monero-client, the following changes have been made:
-
-Version 2.2.0 and onwards have changed from having separate BeldexClient_WASM.wasm and BeldexClient_WASM.js, and now unify the WASM and .js file together. 
-
-For webpack users, if you had a script set up to copy the WASM as part of your build process, this should be removed from your webpack.config.js file. 
-
-Otherwise, any users of the mymonero-monero-client library should not need to change anything on their side unless you were loading the WASM using a custom method different to our documentation. 
-
-While we've made every effort to remain backwards compatible, please let us know if you experience any issues.
-## Usage
 
 ### Installation
 
 You can install the WASM and javascript bridging code via npm.
 
 ```bash
-npm i @mymonero/mymonero-monero-client
+npm i @bdxi/beldex-client
 ```
 
 ### Initialize
@@ -52,7 +32,7 @@ Initialize the WABridge class which loads and prepares the WebAssembly.
 The WABridge has helper methods for each of the calls allowing for linting and improved error handling
 
 ```js
-const WABridge = await require('@mymonero/mymonero-monero-client')({})
+const WABridge = await require('@bdxi/beldex-client')({})
 ```
 
 ### Generate Wallet
@@ -84,7 +64,7 @@ Provided mnemonic seed phrase it will return the primary address and keys.
 
 ```js
 const result = WABridge.seedAndKeysFromMnemonic(
-  'foxe selfish hum nexus juven dodeg pepp ember biscuti elap jazz vibrate biscui',
+  'exquisite pixels vague lilac peculiar framed guys peculiar needed double acquire dude tacit woken maze germs citadel negative uneven toaster gypsy imitate omnibus pancakes toaster',
   'MAINNET'
 )
 console.log(result)
@@ -99,9 +79,9 @@ isValidKeys(address, privateViewKey, privateSpendKey)
 
 ```js
 const result = WABridge.isValidKeys(
-  '43zxvpcj5Xv9SEkNXbMCG7LPQStHMpFCQCmkmR4u5nzjWwq5Xkv5VmGgYEsHXg4ja2FGRD5wMWbBVMijDTqmmVqm93wHGkg',
-  '7bea1907940afdd480eff7c4bcadb478a0fbb626df9e3ed74ae801e18f53e104',
-  '4e6d43cd03812b803c6f3206689f5fcc910005fc7e91d50d79b0776dbefcd803',
+  'bxdBKFWZRaqUEiaAuZpmhGaJvPEUx83VhT7GniQsqrW66Ft6j6n9ECNEMtyqVfM1FTbqs9Ts8CcwyfPGFhToRQhm22MF6rbTM',
+  'a34c54f87c4839cdb048f7e9a2c543bd416fc9ccb9eb356b522fcac6a9be6400',
+  'f7349042d7df37aa7d5aa3ebc5ecdc3526b0468c5b8db669064ebe8096dfc007',
   '',
   'MAINNET'
 )
@@ -123,7 +103,7 @@ Decodes the address to access public spend key, public view key, whether it is a
 
 ```js
 const result = WABridge.decodeAddress(
-  '49qwWM9y7j1fvaBK684Y5sMbN8MZ3XwDLcSaqcKwjh5W9kn9qFigPBNBwzdq6TCAm2gKxQWrdZuEZQBMjQodi9cNRHuCbTr',
+  'bxdBKFWZRaqUEiaAuZpmhGaJvPEUx83VhT7GniQsqrW66Ft6j6n9ECNEMtyqVfM1FTbqs9Ts8CcwyfPGFhToRQhm22MF6rbTM',
   'MAINNET'
 )
 console.log(result)
@@ -135,8 +115,8 @@ Compares two mnemonic phrases against each other.
 
 ```js
 const result = WABridge.compareMnemonics(
-  'foxe selfish hum nexus juven dodeg pepp ember biscuti elap jazz vibrate biscui',
-  'fox sel hum nex juv dod pep emb bis ela jaz vib bis'
+  'exquisite pixels vague lilac peculiar framed guys peculiar needed double acquire dude tacit woken maze germs citadel negative uneven toaster gypsy imitate omnibus pancakes toaster',
+  'fox sel exquisite pixels vague lilac peculiar framed guys peculiar needed double acquire dude tacit woken maze germs citadel negative uneven toaster gypsy imitate omnibus'
 )
 console.log(result)
 ```
@@ -147,7 +127,7 @@ This is a helper function for decodeAddress. If the address is not a subaddress 
 
 ```js
 const result = WABridge.isIntegratedAddress(
-  '4L6Gcy9TAHqPVPMnqa5cPtJK25tr7maE7LrJe67vzumiCtWwjDBvYnHZr18wFexJpih71Mxsjv8b7EpQftpB9NjPaL41VrjstLM5WevLZx', 
+  '4EWiFcm7Tj7efcpeLJsRL9ZhJ43rMANd8CMSAxz71zqM2eMMHr7ZW3J2i1K6jHZXgn34hwBxqy8CxDLBw9UF5tGsZ3dwd9D3TMJ4es8QUJ', 
   'MAINNET'
 )
 console.log(result)
@@ -160,7 +140,7 @@ This is a helper function for decodeAddress. If the address decode returns is a 
 
 ```js
 const result = WABridge.isSubaddress(
-  '4L6Gcy9TAHqPVPMnqa5cPtJK25tr7maE7LrJe67vzumiCtWwjDBvYnHZr18wFexJpih71Mxsjv8b7EpQftpB9NjPaL41VrjstLM5WevLZx', 
+  '89UqPUN1ytN31PhkQLbdxfWxXndmQgwPfMazYUZY2EA7Yz4nAfuncqFW7PCKBpjkK1j4o2LmsMY9zBfqVgebouqsDCsjWxd', 
   'MAINNET'
 )
 console.log(result)
@@ -173,7 +153,7 @@ Accepts a primary addresss and a short payment id. subaddresses cannot be paired
 
 ```js
 const result = WABridge.newIntegratedAddress(
-  '43zxvpcj5Xv9SEkNXbMCG7LPQStHMpFCQCmkmR4u5nzjWwq5Xkv5VmGgYEsHXg4ja2FGRD5wMWbBVMijDTqmmVqm93wHGkg',
+  '4EWiFcm7Tj7efcpeLJsRL9ZhJ43rMANd8CMSAxz71zqM2eMMHr7ZW3J2i1K6jHZXgn34hwBxqy8CxDLBw9UF5tGsZ3dwd9D3TMJ4es8QUJ',
   '07749f00b7e3a2f6',
   'MAINNET'
 )
@@ -242,15 +222,15 @@ Subaddresses and primary desitnations can be mixed within a single transaction.
 const options = {
     destinations: [
       { 
-        'to_address': '42ddLnxquN84kpfmEpL8FxdBw32BGuwagXSz6xRSAUA2e7dupTS1FxP3vo1iPBA2doHPwJUpE7WVCMutnfwVMtVAKoaEA8X', 
+        'to_address': 'bxdBKFWZRaqUEiaAuZpmhGaJvPEUx83VhT7GniQsqrW66Ft6j6n9ECNEMtyqVfM1FTbqs9Ts8CcwyfPGFhToRQhm22MF6rbTM', 
         'send_amount': '0.0001'
       }
     ],
     priority: 1,
-    address: '46kDcL7a9uVQojKQWqxqZUg9cKuffJvjYhbjbybxV46oNZm3Pa7qX9YWXC6vjAnyr3NrMFWvGjj7GUNVrQM9itGC5npKFD8',
-    privateViewKey: 'f9f3aa647a5cce9ed896936b7f500b6bf87f48d4e092692c07fe824743a2d402',
+    address: 'bxdBKFWZRaqUEiaAuZpmhGaJvPEUx83VhT7GniQsqrW66Ft6j6n9ECNEMtyqVfM1FTbqs9Ts8CcwyfPGFhToRQhm22MF6rbTM',
+    privateViewKey: 'a34c54f87c4839cdb048f7e9a2c543bd416fc9ccb9eb356b522fcac6a9be6400',
     publicSpendKey: '872d28c53d4f2c8e532b445a4d4193ea0d9d72b25695dff2b98bfd82e113cc80',
-    privateSpendKey: '9efdc2250dcea2babdf2d8463185234e97b0bebdb0bd313134254316b708f40f',
+    privateSpendKey: 'f7349042d7df37aa7d5aa3ebc5ecdc3526b0468c5b8db669064ebe8096dfc007',
     shouldSweep: false,
     paymentId: '',
     nettype: 'MAINNET',
@@ -275,5 +255,7 @@ WABridge.createTransaction(options)
 ## License
 
 See [`LICENSE.txt`](LICENSE.txt) for license.
+
+All source code copyright © 2024 by Beldex. All rights reserved.
 
 All source code copyright © 2022 by MyMonero. All rights reserved.
