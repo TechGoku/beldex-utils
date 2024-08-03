@@ -14,7 +14,7 @@ If you would like to generate the WASM files yourself you will require docker
 1. `cd packages/beldex-client`
 1. `rm -rf build` removes the old build folder if you have run a build previously.
 1. `rm src/BeldexClient_*` removes the old WASM before your new build.
-1. `./prepare.sh` to fetch the monero core code and the mymonero bridging code.
+1. `./prepare.sh` to fetch the beldex core code and the beldex bridging code.
 1. `npm run build` initiates the emscripten docker image to build the project.
 
 
