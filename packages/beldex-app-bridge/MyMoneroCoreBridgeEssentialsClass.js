@@ -56,6 +56,11 @@ class MyMoneroCoreBridgeEssentialsClass
 		return this.Module.new_payment_id();
 	}
 
+	// HF22 private tokens: raw JSON string, parsed by the caller.
+	token_registration_info() {
+		return this.Module.token_registration_info();
+	}
+
 	new__int_addr_from_addr_and_short_pid(address, short_pid, nettype) {
 		if (!short_pid || short_pid.length != 16) {
 			throw "expected valid short_pid";
